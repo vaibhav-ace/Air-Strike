@@ -7,6 +7,9 @@ This project was undertaken by me as an independent project. This is a redevelop
 No code was copied from any other internet sources for this project. This is an independent project undertaken by me, built from scratch!
 
 How to run?
+
 To run game please type 'make game'.
+
+
 
 ![image](https://user-images.githubusercontent.com/99183587/169662864-41ee00a6-6329-4c4b-9632-6eb52b689eaa.png)
