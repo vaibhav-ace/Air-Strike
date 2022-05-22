@@ -7,6 +7,7 @@ using namespace std;
 int main(){
     //Game start
 
+
     string choice=prologue(); //Game description
 
     //User choice for difficulty level

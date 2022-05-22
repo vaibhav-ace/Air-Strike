@@ -1,8 +1,11 @@
 #include "commands.h"
 #include "alien.h"
 #include <vector>
+#include <time.h>
 #include <bits/stdc++.h>
+#include <ctime>
 using namespace std;
+
 
 
 
@@ -10,11 +13,18 @@ void hard(){
 
     //declaring variables
     alien enemy;
+    alien enemy2;
     enemy.set_health(100);
+    enemy2.set_health(100);
     int enemy_health=enemy.get_health();
+    int enemy2_health=enemy2.get_health();
     //enemy position
     int enemy_position_row=0;
-    int enemy_position_col=random_number();
+    int clock=random_number();
+    int enemy_position_col=(random_numberx()*clock)%10;
+    int enemy2_position_row=0;
+    clock=random_number();
+    int enemy2_position_col=(random_numberx()/clock)%10;
     string row="";
     string col="";
     int column=0; //User input converted to integer
@@ -22,9 +32,11 @@ void hard(){
     vector <string> index={"1","2","3","4","5","6","7","8","9","10"};
     int left=0; //hint variables left and right
     int right=0;
+    int left2=0; //hint variables left and right
+    int right2=0;
 
 
-    while(enemy_health>0){
+    while(enemy_health>0 || enemy2_health>0){
         cout << "----------------------------------------------------------------------------------------------------------------------------------" <<endl;
         cout << endl;
 
@@ -32,7 +44,10 @@ void hard(){
         //Printing board
         for (int i=0;i<10;i++){
             for (int j=0;j<10;j++){
-                if (enemy_position_row==i && enemy_position_col==j){
+                if (enemy_position_row==i && enemy_position_col==j && enemy_health>0){
+                    cout << " X ";
+                }
+                else if (enemy2_position_row==i && enemy2_position_col==j && enemy2_health>0 && enemy_position_col!=enemy2_position_col){
                     cout << " X ";
                 }
                 else{
@@ -47,14 +62,26 @@ void hard(){
 
         //Enemy annihilated or survives
         if (loop_count>0){
-            if (column==enemy_position_col){
-                cout << "Enemy annihilated..." << endl;
+            //Enemy 1
+            if (column==enemy_position_col || enemy_health<=0){
+                cout << "Enemy 1 annihilated..." << endl;
                 enemy.set_health(enemy.get_health()-100);
                 enemy_health=enemy.get_health();
-                continue;
             }
             else{
-                cout << "Enemy survives..." << endl;
+                cout << "Enemy 1 survives..." << endl;
+            }
+            //Enemy 2
+            if (column==enemy2_position_col || enemy2_health<=0){
+                cout << "Enemy 2 annihilated..." << endl;
+                enemy2.set_health(enemy2.get_health()-100);
+                enemy2_health=enemy2.get_health();
+            }
+            else{
+                cout << "Enemy 2 survives..." << endl;
+            }
+            if (enemy_health<=0 && enemy2_health<=0){
+                continue;
             }
         }
         loop_count++;
@@ -62,7 +89,11 @@ void hard(){
 
         //Resetting values for next iteration
         enemy_position_row++;
-        enemy_position_col=random_number();
+        enemy2_position_row++;
+        clock=random_number();
+        enemy_position_col=(random_numberx()*clock)%10;
+        clock=random_number();
+        enemy2_position_col=(random_numberx()/clock)%10;
         if (enemy_position_col>=2 && enemy_position_col<=7){
             left=enemy_position_col-1;
             right=enemy_position_col+1;
@@ -74,7 +105,27 @@ void hard(){
             left=8;
             right=10;
         }
-        cout << "AI Auto GPS: Next enemy spaceship located between column co-ordinates " << left << " and " << right << endl;
+
+        if (enemy2_position_col>=2 && enemy2_position_col<=7){
+            left2=enemy2_position_col-1;
+            right2=enemy2_position_col+1;
+        }
+        else if (enemy2_position_col<2){
+            left2=1;
+            right2=3;
+        }else{
+            left2=8;
+            right2=10;
+        }
+
+        //AI lock
+        if (enemy_health>0){
+            cout << "AI Auto GPS: Next enemy spaceship located between column co-ordinates " << left << " and " << right << endl;
+        }
+        if (enemy2_health>0){
+            cout << "AI Auto GPS: Next enemy spaceship located between column co-ordinates " << left2 << " and " << right2 << endl;
+        }
+
 
 
         //User input
@@ -92,10 +143,10 @@ void hard(){
 
         //AI messages
 
-        if (enemy_position_row==9){
+        if (enemy_position_row==9 || enemy2_position_row==9){
             cout <<"Final human battle..." << endl;
         }
-        if (enemy_position_row>9){
+        if (enemy_position_row>9 || enemy2_position_row>9){
             cout << "Humanity was annihilated at the hands of the aliens..." << endl;
             cout << "Game over...Exiting Game..." << endl; break;
         }

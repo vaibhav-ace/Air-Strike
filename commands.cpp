@@ -78,12 +78,17 @@ string prologue(){
 
 
 //----------------------------------------------------------------------------------------------------------------------------------
-int random_number(){
-    srand (time(0));
-    int random= 0+(rand()%9);
+int random_numberx(){
+    srand(time(NULL));
+    int random=0+(rand()%9);
     return random;
 }
-
+//random number generator
+int random_number(){
+    srand(time(NULL));
+    int random=0+(rand()%9);
+    return random;
+}
 
 
 //----------------------------------------------------------------------------------------------------------------------------------

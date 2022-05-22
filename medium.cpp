@@ -6,6 +6,8 @@ using namespace std;
 
 
 
+
+//medium function
 void medium(){
 
     //declaring variables
@@ -14,7 +16,8 @@ void medium(){
     int enemy_health=enemy.get_health();
     //enemy position
     int enemy_position_row=0;
-    int enemy_position_col=random_number();
+    int clock=random_number();
+    int enemy_position_col=(random_numberx()*clock)%10;
     string row="";
     string col="";
     int column=0; //User input converted to integer
@@ -63,7 +66,8 @@ void medium(){
 
         //Resetting values for next iteration
         enemy_position_row++;
-        enemy_position_col=random_number();
+        clock=random_number();
+        enemy_position_col=(random_numberx()*clock)%10;
         if (enemy_position_col>=2 && enemy_position_col<=7){
             left=enemy_position_col-1;
             right=enemy_position_col+1;

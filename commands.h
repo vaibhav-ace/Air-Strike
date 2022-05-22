@@ -9,4 +9,5 @@ void epilogue(); //Game end description
 void easy();
 void medium();
 void hard();
+int random_numberx();
 int random_number();
