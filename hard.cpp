@@ -24,12 +24,12 @@ void hard(){
     int enemy_position_col=(random_numberx()*clock)%10;
     int enemy2_position_row=0;
     clock=random_number();
-    int enemy2_position_col=(random_numberx()/clock)%10;
+    int enemy2_position_col=(random_numberx()/clock+1)%10;
     string row="";
     string col="";
     int column=0; //User input converted to integer
     int loop_count=0; //no of loops' count index
-    vector <string> index={"1","2","3","4","5","6","7","8","9","10"};
+    vector <string> index={"1","2","3","4","5","6","7","8","9","10","1967"};
     int left=0; //hint variables left and right
     int right=0;
     int left2=0; //hint variables left and right
@@ -93,7 +93,7 @@ void hard(){
         clock=random_number();
         enemy_position_col=(random_numberx()*clock)%10;
         clock=random_number();
-        enemy2_position_col=(random_numberx()/clock)%10;
+        enemy2_position_col=(random_numberx()/clock+1)%10;
         if (enemy_position_col>=2 && enemy_position_col<=7){
             left=enemy_position_col-1;
             right=enemy_position_col+1;
@@ -128,11 +128,25 @@ void hard(){
 
 
 
+
         //User input
         cout << "Auto AI has confirmed row co-ordinates..." << endl;
         cout << "Please enter column co-ordinates...1 to 10..." << endl;
         cin >> col;
-        while(find(index.begin(),index.end(),col)==index.end()){
+        //AI Hack
+        if(col == "1967"){
+            if (enemy_health>0 && enemy2_health>0){
+                cout << "AI hack power accepted... Enemy 1 at location " << enemy_position_col+1 << " and Enemy 2 at location " << enemy2_position_col+1 << endl;
+            }
+            if (enemy_health>0 && enemy2_health<=0){
+                cout << "AI hack power accepted... Enemy 1 at location " << enemy_position_col+1 << endl;
+            }
+            if (enemy_health<=0 && enemy2_health>0){
+                cout << "AI hack power accepted... Enemy 2 at location " << enemy2_position_col+1 << endl;
+            }
+            cout << "Enter co-ordinates again..." << endl;
+        }
+        while(find(index.begin(),index.end(),col)==index.end() || col=="1967"){
             cout << "AI detected user input...Auto GPS locked...Enter valid attack..." << endl;
             cin >> col;
         }

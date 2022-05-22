@@ -15,7 +15,7 @@ void easy(){
     //enemy position
     int enemy_position_row=0;
     int clock=random_number();
-    int enemy_position_col=(random_numberx()/clock)%10;
+    int enemy_position_col=(random_numberx()/clock+1)%10;
     string row="";
     string col="";
     int column=0; //User input converted to integer
