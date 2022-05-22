@@ -26,6 +26,7 @@ void medium(){
 
     while(enemy_health>0){
         cout << "----------------------------------------------------------------------------------------------------------------------------------" <<endl;
+
         cout << endl;
 
 
@@ -48,13 +49,13 @@ void medium(){
         //Enemy annihilated or survives
         if (loop_count>0){
             if (column==enemy_position_col){
-                cout << "Enemy annihilated..." << endl;
-                enemy.set_health(enemy.get_health()-100);
+                enemy.set_health(enemy.get_health()-40);
                 enemy_health=enemy.get_health();
-                continue;
+                if (enemy_health<=0){cout << "Enemy Health: " << enemy_health << "... Enemy annihilated..." << endl;}
+                else{cout << "Enemy hit...Enemy Health: " << enemy_health << endl;}
             }
             else{
-                cout << "Enemy survives..." << endl;
+                cout << "Enemy survives...Enemy Health: " << enemy_health << endl;
             }
         }
         loop_count++;
