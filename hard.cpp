@@ -25,6 +25,10 @@ void hard(){
     int enemy2_position_row=0;
     clock=random_number();
     int enemy2_position_col=(random_numberx()/clock+1)%10;
+    while (enemy_position_col==0 && enemy2_position_col==0){
+        enemy_position_col=(random_numberx()*clock)%10;
+        enemy2_position_col=(random_numberx()/clock+1)%10;
+    }
     string row="";
     string col="";
     int column=0; //User input converted to integer
@@ -94,6 +98,10 @@ void hard(){
         enemy_position_col=(random_numberx()*clock)%10;
         clock=random_number();
         enemy2_position_col=(random_numberx()/clock+1)%10;
+        while (enemy_position_col==0 && enemy2_position_col==0){
+            enemy_position_col=(random_numberx()*clock)%10;
+            enemy2_position_col=(random_numberx()/clock+1)%10;
+        }
         if (enemy_position_col>=2 && enemy_position_col<=7){
             left=enemy_position_col-1;
             right=enemy_position_col+1;
