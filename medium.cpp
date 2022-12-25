@@ -2,6 +2,7 @@
 #include "alien.h"
 #include <vector>
 #include <bits/stdc++.h>
+#include "graphics.h"
 using namespace std;
 
 
@@ -11,13 +12,14 @@ using namespace std;
 void medium(){
 
     //declaring variables
+    graphics g;
+    string blank_key;
     alien enemy;
     enemy.set_health(100);
     int enemy_health=enemy.get_health();
     //enemy position
     int enemy_position_row=0;
-    int clock=random_number();
-    int enemy_position_col=(random_numberx()*clock)%10;
+    int enemy_position_col=(random_numberx());
     string row="";
     string col="";
     int column=0; //User input converted to integer
@@ -66,8 +68,7 @@ void medium(){
 
         //Resetting values for next iteration
         enemy_position_row++;
-        clock=random_number();
-        enemy_position_col=(random_numberx()*clock)%10;
+        enemy_position_col=random_numberx();
         if (enemy_position_col>=2 && enemy_position_col<=7){
             left=enemy_position_col-1;
             right=enemy_position_col+1;
@@ -101,15 +102,18 @@ void medium(){
             cout <<"Final human battle..." << endl;
         }
         if (enemy_position_row>9){
+            system("clear");
             cout << "Humanity was annihilated at the hands of the aliens..." << endl;
-            cout << "Game over...Exiting Game..." << endl; break;
+            cout << "Game over...Exiting Game..." << endl;
+            g.defeated();
+            break;
         }
     }
 
 
     cout << "----------------------------------------------------------------------------------------------------------------------------------" <<endl;
     cout << endl;
-
+    getline (cin, blank_key);
 
     return;
 }

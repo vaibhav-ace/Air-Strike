@@ -1,5 +1,6 @@
 #include "commands.h"
 #include "alien.h"
+#include "graphics.h"
 #include <vector>
 #include <time.h>
 #include <bits/stdc++.h>
@@ -12,6 +13,8 @@ using namespace std;
 void hard(){
 
     //declaring variables
+    graphics g;
+    string blank_key;
     alien enemy;
     alien enemy2;
     enemy.set_health(100);
@@ -20,14 +23,12 @@ void hard(){
     int enemy2_health=enemy2.get_health();
     //enemy position
     int enemy_position_row=0;
-    int clock=random_number();
-    int enemy_position_col=(random_numberx()*clock)%10;
+    int enemy_position_col=(random_numberx());
     int enemy2_position_row=0;
-    clock=random_number();
-    int enemy2_position_col=(random_numberx()/clock+1)%10;
-    while (enemy_position_col==0 && enemy2_position_col==0){
-        enemy_position_col=(random_numberx()*clock)%10;
-        enemy2_position_col=(random_numberx()/clock+1)%10;
+    int enemy2_position_col=(random_numberx());
+    while(enemy_position_col==enemy2_position_col){
+        enemy_position_col=(random_numberx());
+        enemy2_position_col=(random_numberx());
     }
     string row="";
     string col="";
@@ -94,13 +95,11 @@ void hard(){
         //Resetting values for next iteration
         enemy_position_row++;
         enemy2_position_row++;
-        clock=random_number();
-        enemy_position_col=(random_numberx()*clock)%10;
-        clock=random_number();
-        enemy2_position_col=(random_numberx()/clock+1)%10;
-        while (enemy_position_col==0 && enemy2_position_col==0){
-            enemy_position_col=(random_numberx()*clock)%10;
-            enemy2_position_col=(random_numberx()/clock+1)%10;
+        enemy_position_col=(random_numberx());
+        enemy2_position_col=(random_numberx());
+        while(enemy_position_col==enemy2_position_col){
+            enemy_position_col=(random_numberx());
+            enemy2_position_col=(random_numberx());
         }
         if (enemy_position_col>=2 && enemy_position_col<=7){
             left=enemy_position_col-1;
@@ -142,7 +141,11 @@ void hard(){
         cout << "Please enter column co-ordinates...1 to 10..." << endl;
         cin >> col;
         //AI Hack
+        //temporary variable
+        int hack=0;
         if(col == "1967"){
+            g.honor();
+            hack=1;
             if (enemy_health>0 && enemy2_health>0){
                 cout << "AI hack power accepted... Enemy 1 at location " << enemy_position_col+1 << " and Enemy 2 at location " << enemy2_position_col+1 << endl;
             }
@@ -169,14 +172,21 @@ void hard(){
             cout <<"Final human battle..." << endl;
         }
         if (enemy_position_row>9 || enemy2_position_row>9){
+            system("clear");
+            if (hack==1){
+                cout << "Sadly, the aliens saw your hacking power at final battle and deceived it!" <<endl;
+            }
             cout << "Humanity was annihilated at the hands of the aliens..." << endl;
-            cout << "Game over...Exiting Game..." << endl; break;
+            cout << "Game over...Exiting Game..." << endl;
+            g.defeated();
+            break;
         }
     }
 
 
     cout << "----------------------------------------------------------------------------------------------------------------------------------" <<endl;
     cout << endl;
+    getline (cin, blank_key);
 
 
     return;

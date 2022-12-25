@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "commands.h"
+#include "graphics.h"
 using namespace std;
 
 
@@ -13,43 +14,24 @@ using namespace std;
 
 //----------------------------------------------------------------------------------------------------------------------------------
 string prologue(){
-    //Starting animation
-    cout <<"\t\t\t\t\t\t\t#################################################"<<endl;
-    cout <<"\t\t\t\t\t\t\t#####              AIR STRIKE               #####"<<endl;
-    cout <<"\t\t\t\t\t\t\t#################################################"<<endl<<endl<<endl<<endl;
-
-
-
-    cout <<"\t\t\t\t\t\t\t               ###     ####    ###                     "<<endl;
-    cout <<"\t\t\t\t\t\t\t           ######    ########   ######                 "<<endl;
-    cout <<"\t\t\t\t\t\t\t       #########       #####     #########             "<<endl;
-    cout <<"\t\t\t\t\t\t\t         #########      ##      ######               "<<endl;
-    cout <<"\t\t\t\t\t\t\t            #######            #####                   "<<endl;
-    cout <<"\t\t\t\t\t\t\t              ######          #####                    "<<endl;
-    cout <<"\t\t\t\t\t\t\t                #####        #####                   "<<endl;
-    cout <<"\t\t\t\t\t\t\t                  ####     ######                   "<<endl;
-    cout <<"\t\t\t\t\t\t\t                   ####   ######                   "<<endl;
-    cout <<"\t\t\t\t\t\t\t                    ###########                   "<<endl;
-    cout <<"\t\t\t\t\t\t\t                     #########                   "<<endl;
-    cout <<"\t\t\t\t\t\t\t                       #####                   "<<endl;
-    cout <<"\t\t\t\t\t\t\t                        ###                   "<<endl;
-    cout <<"\t\t\t\t\t\t\t                         #                   "<<endl;
-    cout << "Press any key to start... type 'esc' string to Escape..." << endl;
 
     //declaring variables
     string start="";
     string choice="";
     string instructions="";
+    graphics g;
+    string blank_key;
+    g.prologue();
 
-
-    cin >> start;
+    getline(cin,start);
+    system("clear");
     if (start=="esc"){
-        cout << "Exiting Game..." << endl;
         return start;
     }
 
     //Game description
     cout << "----------------------------------------------------------------------------------------------------------------------------------" <<endl;
+    g.world_art();
     cout << "Welcome to Air Strike!" << endl;
     cout << "This game is like the classic game of Battleship..." << endl;
     cout << "Aliens will try to invade your home planet and destroy humankind forever..." << endl;
@@ -58,7 +40,10 @@ string prologue(){
     cout << "Press 'i' for instructions, any other key to continue" << endl;
 
     //Instructions
-    cin >> instructions;
+
+    getline(cin,instructions);
+    system("clear");
+
     if (instructions=="i"){
         cout << "Aliens will try and invade you home planet. To save them you must detect the alien spaceships ";
         cout << "before they reach the firing fort of humanity..." << endl;
@@ -67,33 +52,22 @@ string prologue(){
         cout << "Guess the correct co-ordinates of the enemy's move...Pick a row and column upon AI requests..." << endl;
     }
     cout << "Please pick a difficulty level from:\t'easy'...'medium'...'hard'..." << endl;
-    cin >> choice;
+    getline(cin,choice);
     cout << "Good Luck...Game Starts..." << endl;
     cout << "----------------------------------------------------------------------------------------------------------------------------------" <<endl;
+    cout << "Press any key to continue..." << endl;
+    getline(cin,blank_key);
+    system("clear");
 
 
     return choice;
 }
 
 
-
 //----------------------------------------------------------------------------------------------------------------------------------
-int random_numberx(){
-    srand(time(NULL));
-    int random=0+(rand()%9);
-    return random;
-}
 //random number generator
-int random_number(){
-    srand(time(NULL));
-    int random=0+(rand()%9);
+int random_numberx(){
+    srand(time(0));
+    int random = 0 + rand() % 10;
     return random;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------------------
-void epilogue(){
-
-    cout <<"Good Game!" << endl;
-    return;
 }

@@ -2,16 +2,23 @@
 #include <string>
 #include "alien.h"
 #include "commands.h"
+#include "graphics.h"
 using namespace std;
 
 int main(){
+
     //Game start
-
-
+    system("clear");
+    string blank_key;
+    graphics g;
     string choice=prologue(); //Game description
 
     //User choice for difficulty level
-    if (choice=="esc"){return 0;}
+    if (choice=="esc"){
+        system("clear");
+        g.defeated();
+        return 0;
+    }
     else if (choice=="easy"){
         easy();
     }
@@ -30,7 +37,11 @@ int main(){
         easy();
     }
 
-    epilogue(); //Game end description
+    cout << "Press any key to continue..." << endl;
+    getline(cin,blank_key);
+    system("clear");
+
+    g.epilogue(); //Game end description
 
     return 0;
 }
