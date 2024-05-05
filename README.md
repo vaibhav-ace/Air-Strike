@@ -9,6 +9,7 @@ No code was copied from any other internet sources for this project. This is an 
 How to run?
 
 To run game please type 'make game' or 'mingw32-make game'.
+Similarly, try 'make game2' or 'mingw32-make game2' if the above line does not compile on your system.
 
 
 
