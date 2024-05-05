@@ -8,7 +8,7 @@ No code was copied from any other internet sources for this project. This is an 
 
 How to run?
 
-To run game please type 'make game'.
+To run game please type 'make game' or 'mingw32-make game'.
 
 
 
