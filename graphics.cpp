@@ -8,14 +8,23 @@ using namespace std;
 //Drawing the art line by line from text files
 void draw(string input){
     fstream newfile;
-    newfile.open("ASCII_Art/"+input,ios::in); //open a file to perform read operation using file object
-    if (newfile.is_open()){   //checking whether the file is open
+
+    //open a file to perform read operation using file object
+    newfile.open("ASCII_Art/"+input,ios::in); 
+    
+    //checking whether the file is open
+    if (newfile.is_open()){
+
         string tp;
-        while(getline(newfile, tp)){ //read data from file object and put it into string.
+        
+        while(getline(newfile, tp)){ //read data from file object and put it into string
             cout << tp << "\n"; //print the data of the string
         }
-      newfile.close(); //close the file object.
+
+        //close the file object
+        newfile.close();
     }
+
 }
 
 

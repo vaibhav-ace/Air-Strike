@@ -13,21 +13,26 @@ void easy(){
     graphics g;
     string blank_key;
     alien enemy;
+
     enemy.set_health(100);
     int enemy_health=enemy.get_health();
+    
     //enemy position
     int enemy_position_row=0;
     int enemy_position_col=random_numberx();
+    
     string row="";
     string col="";
     int column=0; //User input converted to integer
     int loop_count=0; //no of loops' count index
+    
     vector <string> index={"1","2","3","4","5","6","7","8","9","10"};
     int left=0; //hint variables left and right
     int right=0;
 
 
     while(enemy_health>0){
+        
         cout << "----------------------------------------------------------------------------------------------------------------------------------" <<endl;
         cout << endl;
 
@@ -44,6 +49,7 @@ void easy(){
             }
             cout << endl;
         }
+        
         cout << endl;
         //Board finished printing
 
@@ -60,12 +66,14 @@ void easy(){
                 cout << "Enemy survives..." << endl;
             }
         }
+
         loop_count++;
 
 
         //Resetting values for next iteration
         enemy_position_row++;
         enemy_position_col=random_numberx();
+        
         if (enemy_position_col>=2 && enemy_position_col<=7){
             left=enemy_position_col-1;
             right=enemy_position_col+1;
@@ -77,6 +85,7 @@ void easy(){
             left=8;
             right=10;
         }
+        
         cout << "AI Auto GPS: Next enemy spaceship located between column co-ordinates " << left << " and " << right << endl;
 
 
@@ -84,21 +93,22 @@ void easy(){
         cout << "Auto AI has confirmed row co-ordinates..." << endl;
         cout << "Please enter column co-ordinates...1 to 10..." << endl;
         cin >> col;
+        
         while(find(index.begin(),index.end(),col)==index.end()){
             cout << "AI detected user input...Auto GPS locked...Enter valid attack..." << endl;
             cin >> col;
         }
+        
         column=stoi(col);
         column--;
 
-
-
         //AI messages
 
-        if (enemy_position_row==9){
+        if (enemy_position_row == 9){
             cout <<"Final human battle..." << endl;
         }
-        if (enemy_position_row>9){
+
+        if (enemy_position_row > 9){
             system("clear");
             cout << "Humanity was annihilated at the hands of the aliens..." << endl;
             cout << "Game over...Exiting Game..." << endl;
@@ -108,8 +118,9 @@ void easy(){
     }
 
 
-    cout << "----------------------------------------------------------------------------------------------------------------------------------" <<endl;
+    cout << "----------------------------------------------------------------------------------------------------------------------------------" << endl;
     cout << endl;
+    
     getline (cin, blank_key);
 
     return;

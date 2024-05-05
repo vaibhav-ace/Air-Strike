@@ -21,20 +21,25 @@ void hard(){
     enemy2.set_health(100);
     int enemy_health=enemy.get_health();
     int enemy2_health=enemy2.get_health();
+
     //enemy position
     int enemy_position_row=0;
     int enemy_position_col=(random_numberx());
     int enemy2_position_row=0;
     int enemy2_position_col=(random_numberx());
+
     while(enemy_position_col==enemy2_position_col){
         enemy_position_col=(random_numberx());
         enemy2_position_col=(random_numberx());
     }
+
     string row="";
     string col="";
     int column=0; //User input converted to integer
     int loop_count=0; //no of loops' count index
+
     vector <string> index={"1","2","3","4","5","6","7","8","9","10","1967"};
+
     int left=0; //hint variables left and right
     int right=0;
     int left2=0; //hint variables left and right
@@ -42,6 +47,7 @@ void hard(){
 
 
     while(enemy_health>0 || enemy2_health>0){
+
         cout << "----------------------------------------------------------------------------------------------------------------------------------" <<endl;
         cout << endl;
 
@@ -61,6 +67,7 @@ void hard(){
             }
             cout << endl;
         }
+
         cout << endl;
         //Board finished printing
 
@@ -89,6 +96,7 @@ void hard(){
                 continue;
             }
         }
+
         loop_count++;
 
 
@@ -97,10 +105,12 @@ void hard(){
         enemy2_position_row++;
         enemy_position_col=(random_numberx());
         enemy2_position_col=(random_numberx());
+
         while(enemy_position_col==enemy2_position_col){
             enemy_position_col=(random_numberx());
             enemy2_position_col=(random_numberx());
         }
+
         if (enemy_position_col>=2 && enemy_position_col<=7){
             left=enemy_position_col-1;
             right=enemy_position_col+1;
@@ -133,9 +143,6 @@ void hard(){
             cout << "AI Auto GPS: Next enemy spaceship located between column co-ordinates " << left2 << " and " << right2 << endl;
         }
 
-
-
-
         //User input
         cout << "Auto AI has confirmed row co-ordinates..." << endl;
         cout << "Please enter column co-ordinates...1 to 10..." << endl;
@@ -143,6 +150,7 @@ void hard(){
         //AI Hack
         //temporary variable
         int hack=0;
+
         if(col == "1967"){
             g.honor();
             hack=1;
@@ -157,10 +165,12 @@ void hard(){
             }
             cout << "Enter co-ordinates again..." << endl;
         }
+
         while(find(index.begin(),index.end(),col)==index.end() || col=="1967"){
             cout << "AI detected user input...Auto GPS locked...Enter valid attack..." << endl;
             cin >> col;
         }
+
         column=stoi(col);
         column--;
 
@@ -171,6 +181,7 @@ void hard(){
         if (enemy_position_row==9 || enemy2_position_row==9){
             cout <<"Final human battle..." << endl;
         }
+
         if (enemy_position_row>9 || enemy2_position_row>9){
             system("clear");
             if (hack==1){
@@ -181,11 +192,13 @@ void hard(){
             g.defeated();
             break;
         }
+
     }
 
 
     cout << "----------------------------------------------------------------------------------------------------------------------------------" <<endl;
     cout << endl;
+    
     getline (cin, blank_key);
 
 
