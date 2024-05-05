@@ -102,7 +102,7 @@ void easy(){
         column=stoi(col);
         column--;
 
-        //AI messages
+        //Auto generated AI messages
 
         if (enemy_position_row == 9){
             cout <<"Final human battle..." << endl;

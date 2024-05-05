@@ -176,7 +176,7 @@ void hard(){
 
 
 
-        //AI messages
+        //Auto generated AI messages
 
         if (enemy_position_row==9 || enemy2_position_row==9){
             cout <<"Final human battle..." << endl;

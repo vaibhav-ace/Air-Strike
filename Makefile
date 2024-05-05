@@ -5,3 +5,8 @@ game:
 	g++ -Wall *.cpp
 	clear
 	./a.out
+
+
+game2:
+	g++ -Wall *.cpp -o game.exe
+	./game.exe
