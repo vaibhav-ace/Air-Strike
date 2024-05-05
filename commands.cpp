@@ -10,9 +10,6 @@ using namespace std;
 
 //All functions, except for classes used in the game are given below
 
-
-
-//----------------------------------------------------------------------------------------------------------------------------------
 string prologue(){
 
     //declaring variables
@@ -64,7 +61,6 @@ string prologue(){
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------
 //random number generator
 int random_numberx(){
     srand(time(0));
